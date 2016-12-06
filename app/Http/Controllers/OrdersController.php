@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Orders;
 
 class OrdersController extends Controller
 {
-    protected $order;
 
-    public function __construct(\App\Acme\Repositories\DbOrdersRepository $order) {
-      $this->order = $order;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        // dd($this->order);
-        return $this->order->getAll();
+        return Orders::all();
     }
 
     /**
@@ -51,7 +47,7 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        return $this->order->getById($id);
+        return Orders::find($id);
     }
 
     /**
